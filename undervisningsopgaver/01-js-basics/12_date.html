@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <p>Hvor gammel er du?</p>
+    <input type="number" id="din_alder">
+    <p>Hvor gammel er din date?</p>
+    <input type="number" id="datens_alder">
+    <button>Klik og se om det kan blive jer</button>
+
+    <script>
+        let resultat;
+        document.querySelector("button").addEventListener("mousedown", buttonClicked);
+
+        function buttonClicked() {
+            let dinAlder = document.querySelector("#din_alder").value;
+            let datensAlder = document.querySelector("#datens_alder").value;
+
+
+            if (dinAlder < 15) {
+                resultat = "Hov hov, det er ikke for børn!";
+            } else if (datensAlder < 15) {
+                resultat = "Hov hov, find nogen på din egen alder";
+            } else if (datensAlder >= (dinAlder / 2 + 7) && (dinAlder >= (datensAlder / 2 + 7))) {
+                resultat = "Jep, den er fjong";
+            } else {
+                resultat = "Find en anden"
+            }
+
+            console.log(resultat);
+
+        }
+
+    </script>
+</body>
+
+</html>
