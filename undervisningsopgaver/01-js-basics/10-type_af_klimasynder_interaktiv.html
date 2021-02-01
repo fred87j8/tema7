@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+
+<body>
+
+    <p>Hvor mange timer er flyrejsen?</p>
+    <input type="text" id="timer">
+    <button>Klik og find ud af hvilken type klimasynder du er</button>
+
+
+    <script>
+        document.querySelector("button").addEventListener("click", buttonClicked);
+
+
+
+        let respons;
+
+        function buttonClicked() {
+
+            let timer = document.querySelector("#timer").value;
+
+            let total = timer * 109;
+
+            if (total < 100) {
+                respons = "Tæt på Thunberg";
+            } else if (total < 200) {
+                respons = "Jaja du behøver ikke melde dig ud af Å!";
+            } else if (total < 600) {
+                respons = "Godt for turismen";
+            } else {
+                respons = "Nå ja, vi kan jo altid kolonisere en anden planet";
+            }
+
+            console.log(`du har fløjet ${timer} timer og udledt ${timer*109} kg CO2. ${respons}`);
+
+        }
+
+    </script>
+</body>
+
+</html>
