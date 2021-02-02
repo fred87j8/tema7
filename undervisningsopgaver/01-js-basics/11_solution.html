@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <p>Hvilket tal tror du på?</p>
+    <input type="integer" id="tal">
+    <button>Gæt</button>
+    <button>Nyt spil</button>
+
+    <script>
+        let resultat;
+        let clickCount = 0;
+        const myRand = Math.round(Math.random() * 20);
+
+        document.querySelector("button").addEventListener("mousedown", guessTal);
+
+
+        function guessTal() {
+
+            let tal = document.querySelector("#tal").value;
+
+            console.log("random tal", myRand);
+            console.log("Bruger tal", tal);
+
+            clickCount += 1;
+
+            if (tal > 0 myRand) {
+                resultat = "Det var lige lidt over målet. Prøv igen!";
+            } else if (tal < myRand) {
+                resultat = "Nah dude gi lidt mer'.  Prøv igen!";
+            } else {
+                resultat = `Congratzzz! Du brugte ${clickCount} klik på det. Vil du spille igen?`;
+            }
+
+            console.log(resultat);
+
+        }
+
+    </script>
+</body>
+
+</html>
