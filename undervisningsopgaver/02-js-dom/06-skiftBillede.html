@@ -123,45 +123,70 @@
         console.log(footer);
 
         //        ændringer i html med js
+        document.addEventListener("DOMContentLoaded", readScript);
 
-        titel.textContent = "En helt ny dag";
-
-        firstH3.textContent = "Nå hvad så";
-
-        firstP.textContent = "It's a new day it's a new dawn";
-
-        secondH3.innerHTML = "Kan vi lige få lov at være her";
-
-        secondP.innerHTML = "<b> Det ved jeg nu ikke </b>";
-
-        firstImage.src = "images/image1.png";
-
-        secondImage.src = "images/image2.png";
-
-        firstImage.alt = "nåmen nu vi er i gang";
-
-        secondImage.alt = "catch the cats";
-
-        //        tilføj elementer
-
-        let mainSection = document.querySelector("section");
-        let thirdArticle = document.createElement("article");
-        let h3 = document.createElement("h3");
-        let thirdH3 = document.createTextNode("Wassup dog H3 here");
-        h3.appendChild(thirdH3);
-        let p = document.createElement("p");
-        let thirdP = document.createTextNode("Wassup dog P here. make some noise");
-        p.appendChild(thirdP);
-        let img = document.createElement("img");
-        img.src = "images/image3.png";
+        function readScript() {
+            console.log("Siden er loadet");
 
 
-        section.appendChild(thirdArticle);
-        thirdArticle.appendChild(img);
-        thirdArticle.appendChild(h3);
-        thirdArticle.appendChild(p);
+            titel.textContent = "En helt ny dag";
+
+            firstH3.textContent = "Nå hvad så";
+
+            firstP.textContent = "It's a new day it's a new dawn";
+
+            secondH3.innerHTML = "Kan vi lige få lov at være her";
+
+            secondP.innerHTML = "<b> Det ved jeg nu ikke </b>";
+
+            firstImage.src = "images/image1.png";
+
+            secondImage.src = "images/image2.png";
+
+            firstImage.alt = "nåmen nu vi er i gang";
+
+            secondImage.alt = "catch the cats";
+
+            //        tilføj elementer
+
+            let mainSection = document.querySelector("section");
+            let thirdArticle = document.createElement("article");
+            let h3 = document.createElement("h3");
+            let thirdH3 = document.createTextNode("Wassup dog H3 here");
+            h3.appendChild(thirdH3);
+            let p = document.createElement("p");
+            let thirdP = document.createTextNode("Wassup dog P here. make some noise");
+            p.appendChild(thirdP);
+            let img = document.createElement("img");
+            img.src = "images/image3.png";
+
+            section.appendChild(thirdArticle);
+            thirdArticle.appendChild(img);
+            thirdArticle.appendChild(h3);
+            thirdArticle.appendChild(p);
+
+        }
+
+        firstImage.addEventListener("click", imageClick);
+
+        function imageClick() {
+
+            firstImage.src = "images/image4.png";
+
+        }
 
     </script>
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+<!--space-->
