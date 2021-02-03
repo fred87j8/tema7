@@ -47,10 +47,6 @@
             width: 100%;
         }
 
-        .shadow {
-            box-shadow: -2px 2px 19px 13px yellow;
-        }
-
     </style>
 
 
@@ -67,12 +63,12 @@
         <h2>Ja, kan det blive vildere? </h2>
 
         <section>
-            <article .shadow>
+            <article>
                 <img src="https://placeimg.com/400/300/any" alt="Random ass image">
                 <h3>Lol hvad forestiller det?</h3>
                 <p>Ingen ved det, ingen taler om det. Men er det blot pluralistisk ignorence eller er det oprigtig individuel ignorance?</p>
             </article>
-            <article .shadow>
+            <article>
                 <img src="https://placeimg.com/400/400/any" alt="Random image">
                 <h3>Lol forestiller det noget?</h3>
                 <p>Ingen ved det, ingen taler om det. Men er det blot pluralistisk ignorence eller er det oprigtig individuel ignorance?</p>
@@ -104,12 +100,6 @@
 
         const secondArticle = document.querySelector("article:nth-child(2)");
         console.log(secondArticle);
-
-        const images = document.getElementsByTagName("img");
-        console.log(images);
-
-        const articles = document.getElementsByTagName("article");
-        console.log(articles);
 
         const firstImage = document.querySelector("img:first-child");
         console.log(firstImage);
@@ -180,25 +170,20 @@
         firstImage.addEventListener("click", imageClick);
 
         function imageClick() {
-            console.log(imageClick);
+
             firstImage.src = "images/image4.png";
         }
 
-        //add shadow to atricles
+        //skift kategori
+        const kategorier = ["animals", "arch", "nature", "tech"];
 
+        secondImage.addEventListener("click", skift);
 
-        const allArticles = document.querySelectorAll("article");
-
-        allArticles.forEach(article => article.addEventListener("mouseover", addShadow));
-
-        function addShadow() {
-            this.classList.add("shadow");
-        }
-
-        allArticles.forEach(article => article.addEventListener("mouseout", removeShadow));
-
-        function removeShadow() {
-            this.classList.remove("shadow");
+        function skift() {
+            console.log("skift");
+            const nummer = Math.round(Math.random() * 4);
+            secondImage.src = "https://placeimg.com/400/400/any" + kategorier[nummer];
+            secondImage.alt = kategorier[nummer];
         }
 
     </script>
