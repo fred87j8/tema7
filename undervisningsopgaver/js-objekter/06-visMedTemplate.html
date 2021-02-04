@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        article {
+            border: 1px solid pink;
+            margin: 1vw;
+            padding: 2vw;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section class="data-container"></section>
+    <template>
+        <article id="dyr">
+            <h3></h3>
+            <img src="" alt="">
+            <p class="type"></p>
+            <p class="levested"></p>
+        </article>
+    </template>
+
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", visDyr);
+
+    let dyr = [{
+        "navn": "gris",
+        "type": "pattedyr",
+        "levested": "svinefarme",
+        "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+    }, {
+        "navn": "frø",
+        "type": "amfibie",
+        "levested": "moser",
+        "billede": "http://mabe-kea.dk/E19/pics/frog.png"
+    }, {
+        "navn": "ræv",
+        "type": "pattedyr",
+        "levested": "skoven",
+        "billede": "http://mabe-kea.dk/E19/pics/fox.png"
+    }, {
+        "navn": "sild",
+        "type": "fisk",
+        "levested": "havet",
+        "billede": "http://mabe-kea.dk/E19/pics/sild.jpg"
+    }, {
+        "navn": "krokodille",
+        "type": "krybdyr",
+        "levested": "ferskvand",
+        "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg"
+    }];
+
+    console.log(dyr);
+
+    //    vis dyreliste i DOM
+
+
+
+    function visDyr() {
+        console.log("visDyr");
+
+        const container = document.querySelector(".data-container");
+
+        const dyreTemplate = document.querySelector("template");
+        dyr.forEach(dyr => {
+
+            let klon = dyreTemplate.cloneNode(true).content;
+
+            klon.querySelector("h3").textContent = dyr.navn;
+            klon.querySelector("img").src = dyr.billede;
+            klon.querySelector(".type").textContent = "type: " + dyr.type;
+            klon.querySelector(".levested").textContent = "levested: " + dyr.levested;
+
+            container.appendChild(klon);
+        })
+    }
+
+</script>
+
+</html>
