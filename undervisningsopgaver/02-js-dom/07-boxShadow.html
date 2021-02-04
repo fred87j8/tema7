@@ -138,7 +138,6 @@
         function readScript() {
             console.log("Siden er loadet");
 
-
             titel.textContent = "En helt ny dag";
 
             firstH3.textContent = "Nå hvad så";
@@ -161,6 +160,7 @@
 
             let mainSection = document.querySelector("section");
             let thirdArticle = document.createElement("article");
+            thirdArticle.classList.add("shadow");
             let h3 = document.createElement("h3");
             let thirdH3 = document.createTextNode("Wassup dog H3 here");
             h3.appendChild(thirdH3);
@@ -169,36 +169,27 @@
             p.appendChild(thirdP);
             let img = document.createElement("img");
             img.src = "images/image3.png";
-
             section.appendChild(thirdArticle);
             thirdArticle.appendChild(img);
             thirdArticle.appendChild(h3);
             thirdArticle.appendChild(p);
 
+            //toggle shadow to atricles
+
+            const allArticles = document.querySelectorAll("article");
+            allArticles.forEach(article => article.addEventListener("mouseover", toggleShadow));
+            allArticles.forEach(article => article.addEventListener("mouseout", toggleShadow));
+
         }
 
+        function toggleShadow() {
+            this.classList.toggle("shadow");
+        }
         firstImage.addEventListener("click", imageClick);
 
         function imageClick() {
             console.log(imageClick);
             firstImage.src = "images/image4.png";
-        }
-
-        //add shadow to atricles
-
-
-        const allArticles = document.querySelectorAll("article");
-
-        allArticles.forEach(article => article.addEventListener("mouseover", addShadow));
-
-        function addShadow() {
-            this.classList.add("shadow");
-        }
-
-        allArticles.forEach(article => article.addEventListener("mouseout", removeShadow));
-
-        function removeShadow() {
-            this.classList.remove("shadow");
         }
 
     </script>
