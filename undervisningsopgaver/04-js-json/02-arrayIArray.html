@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        article {
+            border: 1px solid pink;
+            margin: 1vw;
+            padding: 2vw;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <section class="data-container"></section>
+    <template>
+        <article id="familie">
+            <h3></h3>
+            <img src="" alt="">
+            <p class="rolle">Rolle: </p>
+            <p class="alder">Alder: </p>
+            <p>Egenskaber: </p>
+            <ul class="liste"></ul>
+        </article>
+    </template>
+
+
+</body>
+<script>
+    //        document.addEventListener("DOMContentLoaded", start);
+
+    const container = document.querySelector(".data-container");
+
+    const template = document.querySelector("template");
+
+    const data = "familieData.json";
+
+    async function hentData(data) {
+        const result = await fetch(data);
+        const json = await result.json();
+        start(json);
+    }
+
+    function start(json) {
+        json.forEach(familiemedlem => {
+            let klon = template.cloneNode(true).content;
+
+
+            klon.querySelector("h3").textContent = familiemedlem.navn;
+            klon.querySelector(".rolle").textContent = familiemedlem.rolle;
+            klon.querySelector(".alder").textContent = familiemedlem.alder;
+
+            familiemedlem.egenskaber.forEach(egenskab => {
+                klon.querySelector(".liste ").innerHTML += "<ul>" + egenskab + "</ul>";
+
+            });
+
+            template.appendChild(klon);
+        });
+    }
+
+    hentData(data);
+</script></html>

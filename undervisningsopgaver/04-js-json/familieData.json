@@ -1,0 +1,42 @@
+[{
+
+        "navn": "Carsten",
+        "rolle": "far",
+        "alder": "53",
+        "egenskaber": ["høj", "brune øjne", "sjov synes han selv"]
+
+},
+    {
+        "navn": "Anette",
+        "rolle": "mor",
+        "alder": "52",
+        "egenskaber": ["sød", "sjov", "kærlig"]
+}
+,
+    {
+        "navn": "Kathrine",
+        "rolle": "storesøster",
+        "alder": "27",
+        "egenskaber": ["sød", "sej", "kærlig"]
+}
+,
+    {
+        "navn": "Frederikke",
+        "rolle": "mellesøster",
+        "alder": "25",
+        "egenskaber": ["smuk", "sej", "kreativ"]
+}
+,
+    {
+        "navn": "Mathilde",
+        "rolle": "lillesøster",
+        "alder": "22",
+        "egenskaber": ["gravid", "sjov", "smuk"]
+}
+,
+    {
+        "navn": "Laurits",
+        "rolle": "lillebror",
+        "alder": "17",
+        "egenskaber": ["sjov", "høj", "sød"]
+}]
