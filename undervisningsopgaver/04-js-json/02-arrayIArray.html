@@ -13,6 +13,10 @@
             margin: 1vw;
             padding: 2vw;
         }
+
+        h3 {
+            margin: 2px;
+        }
     </style>
 
 </head>
@@ -31,40 +35,43 @@
         </article>
     </template>
 
-
 </body>
+
+
 <script>
     //        document.addEventListener("DOMContentLoaded", start);
 
-    const container = document.querySelector(".data-container");
+    "use strict";
 
-    const template = document.querySelector("template");
+    const fil = "familieData.json";
 
-    const data = "familieData.json";
-
-    async function hentData(data) {
-        const result = await fetch(data);
+    async function hentData(fil) {
+        const result = await fetch(fil);
         const json = await result.json();
         start(json);
     }
 
     function start(json) {
-        json.forEach(familiemedlem => {
-            let klon = template.cloneNode(true).content;
+        const container = document.querySelector(".data-container");
+        const template = document.querySelector("template");
 
+
+        json.forEach(familiemedlem => {
+
+            const klon = template.cloneNode(true).content;
 
             klon.querySelector("h3").textContent = familiemedlem.navn;
             klon.querySelector(".rolle").textContent = familiemedlem.rolle;
             klon.querySelector(".alder").textContent = familiemedlem.alder;
 
             familiemedlem.egenskaber.forEach(egenskab => {
-                klon.querySelector(".liste ").innerHTML += "<ul>" + egenskab + "</ul>";
+                klon.querySelector(".liste ").innerHTML += "<li>" + egenskab + "</li>";
 
             });
 
-            template.appendChild(klon);
+            container.appendChild(klon);
         });
     }
 
-    hentData(data);
+    hentData(fil);
 </script></html>
