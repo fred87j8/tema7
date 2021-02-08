@@ -41,8 +41,8 @@
 
 </head>
 
-<body>
-    <h1>Persongalleri</h1>
+<header>
+    <h1>Alle</h1>
 
     <nav>
         <button data-troende="alle" class="selected">Alle</button>
@@ -50,6 +50,9 @@
         <button data-troende="nej">Ikke troende</button>
         <button data-troende="tvivler"> Tvivler</button>
     </nav>
+</header>
+
+<body>
 
     <main></main>
 
@@ -79,6 +82,7 @@
         document.addEventListener("DOMContentLoaded", start);
         let personer;
         let filter = "alle";
+        const header = document.querySelector("header h1");
 
         function start() {
             const filterKnapper = document.querySelectorAll("nav button");
@@ -89,6 +93,7 @@
         function filtrerPersoner() {
             filter = this.dataset.troende;
             visPersoner();
+            header.textContent = this.textContent;
         }
 
         async function hentData() {
