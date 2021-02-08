@@ -23,12 +23,33 @@
         img {
             max-width: 100%;
         }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            margin: .5rem .2rem 1rem .2rem;
+            background-color: pink;
+        }
+
+        .selected {
+            background-color: red;
+        }
     </style>
 
 </head>
 
 <body>
     <h1>Persongalleri</h1>
+
+    <nav>
+        <button data-troende="alle" class="selected">Alle</button>
+        <button data-troende="ja">Troende</button>
+        <button data-troende="nej">Ikke troende</button>
+        <button data-troende="tvivler"> Tvivler</button>
+    </nav>
 
     <main></main>
 
@@ -40,12 +61,9 @@
             <p class="fødselsdag">Fødselsdag: </p>
             <p class="titel">Titel: </p>
             <p class="troende">Troende: </p>
-            <!--
-            <p clss="hobby">Hobby: </p>
--->
+
         </article>
     </template>
-
 
 
     <script>
@@ -59,31 +77,41 @@
             }
         };
 
-        document.addEventListener("DOMContentLoaded", hentData);
+        document.addEventListener("DOMContentLoaded", start);
 
         let personer;
-        let filter = "ja";
-        //
-        // function start() {
-        // hentData();
-        // }
-        async function hentData() {
-            const JSONData = await fetch(url, options);
-            //            const json = await JSONData.json();
-            personer = await JSONData.json();
-            //            vis(json);
-            visPersoner();
+        let filter = "alle";
 
+        function start() {
+            const filterKnapper = document.querySelector("nav button");
+            filterKnapper.forEach(knap => knap.addEventListener("mousedown", filtrerPersoner));
+            hentData();
         }
 
-        const main = document.querySelector("main");
-        const template = document.querySelector("template").content;
+        function filtrerPersoner() {
+            filter = this.dataset.troende;
+            visPersoner();
+        }
+
+        async function hentData() {
+            const JSONData = await fetch(url, options);
+
+            personer = await JSONData.json();
+            visPersoner();
+        }
+
+
 
         function visPersoner() {
             console.log(personer);
 
+            const main = document.querySelector("main");
+            const template = document.querySelector("template").content;
+            main.textContent = "";
+
             personer.forEach(person => {
-                if (filter == person.troende) {
+                console.log("Troende", person.troende);
+                if (filter == person.troende || filter == "alle") {
                     const klon = template.cloneNode(true);
 
                     klon.querySelector("h2").textContent = `${person.fornavn} ${person.efternavn}`;
