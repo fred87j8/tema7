@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Babushka</title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        body {
+            margin: 1rem;
+            background-color: beige;
+        }
+
+        h1 {
+            font-family: sans-serif;
+            font-size: 4.5rem;
+            margin: 5px;
+        }
+
+        h2 {
+            font-family: sans-serif;
+            margin: 5px;
+
+        }
+
+        h3 {
+            font-family: sans-serif;
+            margin: 5px;
+
+        }
+
+        article {
+            border: 1px solid burlywood;
+            padding: 10px;
+            border-radius: 1%;
+            margin: 5px;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 10px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 17px;
+        }
+
+        button {
+            margin: .5rem .2rem 1rem .2rem;
+            background-color: burlywood;
+            font-family: sans-serif;
+            border: none;
+            padding: 6px 15px 6px 15px;
+            font-size: 1rem;
+            font-variant-caps: all-petite-caps;
+            height: 40px;
+
+        }
+
+        button:hover {
+            font-size: 1.2rem;
+        }
+
+        .selected {
+            background-color: orange;
+        }
+
+        .kortbeskrivelse {
+            font-style: oblique;
+        }
+    </style>
+
+</head>
+
+<header>
+    <h1>Bistro <br> Babushka</h1>
+
+    <nav>
+        <button data-kategori="alle" class="selected">Alle</button>
+        <button data-kategori="hovedretter">Hovedretter</button>
+        <button data-kategori="forretter">Forretter</button>
+        <button data-kategori="desserter"> Desserter</button>
+        <button data-kategori="sideorders"> Sideorders</button>
+        <button data-kategori="drikkevarer">Drikkevarer</button>
+
+    </nav>
+    <h2>Alle</h2>
+
+</header>
+
+<body>
+
+    <main></main>
+
+    <template>
+        <article>
+            <h3></h3>
+            <img src="" alt="" class="billede">
+            <p class="navn"> </p>
+            <p class="kortbeskrivelse">Titel: </p>
+            <p class="pris">Pris: </p>
+            <p class="kategori">Kategori: </p>
+        </article>
+    </template>
+
+
+    <script>
+        const url = "https://babushka-dd8a.restdb.io/rest/menu";
+
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+
+        const options = {
+            headers: {
+                'x-apikey': "600ec2fb1346a1524ff12de4"
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", start);
+        let retter;
+        let filter = "alle";
+        const header = document.querySelector("header h2");
+
+        function start() {
+            const filterKnapper = document.querySelectorAll("nav button");
+            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerKategorier));
+            hentData();
+        }
+
+        function filtrerKategorier() {
+            filter = this.dataset.kategori;
+            document.querySelector(".selected").classList.remove("selected");
+            this.classList.add("selected")
+            visRetter();
+            header.textContent = this.textContent;
+        }
+
+        async function hentData() {
+            const JSONData = await fetch(url, options);
+
+            personer = await JSONData.json();
+            visRetter();
+        }
+
+        function visRetter() {
+            console.log("visRetter");
+
+            const main = document.querySelector("main");
+            const template = document.querySelector("template").content;
+            main.textContent = "";
+
+            personer.forEach(ret => {
+                console.log("Kateogri", ret.kategori);
+                if (filter == ret.kategori || filter == "alle") {
+                    const klon = template.cloneNode(true);
+
+                    klon.querySelector("h3").textContent = ret.navn;
+                    klon.querySelector(".billede").src = medieurl + ret.billede;
+                    klon.querySelector(".kortbeskrivelse").textContent = ret.kortbeskrivelse;
+                    klon.querySelector(".kategori").textContent += ret.kategori;
+                    klon.querySelector(".pris").textContent += ret.pris;
+                    main.appendChild(klon);
+                }
+            })
+
+        }
+
+        hentData();
+    </script>
+</body></html>
+
+
+
+
+
+
+
+
+
+
+<!--
+
+space-->
