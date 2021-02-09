@@ -37,6 +37,7 @@
         .selected {
             background-color: red;
         }
+
     </style>
 
 </head>
@@ -125,7 +126,6 @@
                     klon.querySelector(".troende").textContent += person.troende;
                     klon.querySelector(".fødselsdag").textContent += person.fødselsdag;
                     klon.querySelector(".titel").textContent += person.titel;
-
                     klon.querySelector(".person").addEventListener("click", () => visDetaljer(person));
 
                     main.appendChild(klon);
@@ -135,13 +135,16 @@
         }
 
         function visDetaljer(hvem) {
-            location.href = `02-detalje.html?=id=${hvem._id}`;
+            location.href = `02-detalje.html?id=${hvem._id}`;
         }
 
 
         hentData();
+
     </script>
-</body></html>
+</body>
+
+</html>
 
 
 
