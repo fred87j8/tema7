@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+
+    <style>
+        body {
+            margin: 1rem;
+            background-color: beige;
+        }
+
+        h1 {
+            font-family: sans-serif;
+            font-size: 4.5rem;
+            margin: 5px;
+        }
+
+        h2 {
+            font-family: sans-serif;
+            margin: 5px;
+
+        }
+
+        h3 {
+            font-family: sans-serif;
+            margin: 5px;
+        }
+
+        body {
+            margin-left: 10vw;
+            margin-right: 10vw;
+
+        }
+
+        article {
+            border: 1px solid burlywood;
+            padding: 10px;
+            border-radius: 1%;
+            margin: 5px;
+            background color: blanchedalmond;
+            /*
+            width: 80vw;
+*/
+            max-width: 650px;
+
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            max-width: 100%;
+
+        }
+
+        button {
+            margin: .5rem .2rem 1rem .2rem;
+            background-color: burlywood;
+            font-family: sans-serif;
+            border: none;
+            padding: 6px 15px 6px 15px;
+            font-size: 1.2rem;
+            font-variant-caps: all-petite-caps;
+            height: 40px;
+            width: 100%;
+            cursor: pointer;
+
+        }
+
+        .selected {
+            background-color: orange;
+        }
+
+        .kortbeskrivelse {
+            font-style: oblique;
+        }
+
+        .info {
+            height: 30px;
+        }
+
+        button:hover {
+            background-color: orange;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+
+        <article>
+            <h2></h2>
+            <img src="" alt="" class="billede">
+            <p class="navn"> </p>
+            <p class="langbeskrivelse"></p>
+            <p class="oprindelsesregion">Retten stammer fra </p>
+            <p class="pris">Pris: </p>
+            <p class="kategori">Kategori: </p>
+            <button>Tilbage til menuen</button>
+
+        </article>
+    </div>
+
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+
+        let ret;
+
+        const myHeaders = {
+            'x-apikey': "600ec2fb1346a1524ff12de4"
+        };
+
+        console.log("id", id);
+        document.addEventListener("DOMContentLoaded", loadJSON);
+
+        async function loadJSON() {
+            const JSONData = await fetch(`https://babushka-dd8a.restdb.io/rest/menu/${id}`, {
+                headers: myHeaders
+            });
+            ret = await JSONData.json();
+
+            console.log("Retter", ret);
+
+            visRetter(ret);
+        }
+
+        function visRetter() {
+            document.querySelector("h2").textContent = ret.navn;
+            document.querySelector(".billede").src = medieurl + ret.billede;
+            document.querySelector(".langbeskrivelse").textContent = ret.langbeskrivelse;
+            document.querySelector(".oprindelsesregion").textContent += ret.oprindelsesregion;
+            document.querySelector(".pris").textContent += ret.pris + " kr.";
+            document.querySelector(".kategori").textContent += ret.kategori;
+            document.querySelector("button").addEventListener("click", tilbageTilMenukort);
+        }
+
+        function tilbageTilMenukort() {
+            history.back();
+        }
+
+    </script>
+</body>
+
+</html>
